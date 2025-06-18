@@ -10,7 +10,10 @@ UCLASS()
 class HOMEWORK05_API AMyActor : public AActor
 {
 	GENERATED_BODY()
-	
+
+private:
+	FVector2D start;
+
 public:	
 	// Sets default values for this actor's properties
 	AMyActor();
@@ -22,5 +25,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	virtual void move();
+	int32_t step();
 };

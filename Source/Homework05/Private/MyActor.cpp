@@ -14,8 +14,10 @@ AMyActor::AMyActor()
 // Called when the game starts or when spawned
 void AMyActor::BeginPlay()
 {
+	start;
 	Super::BeginPlay();
-	void PrintFVector2DArray();
+	void move();
+	int32_t step();
 }
 
 // Called every frame
@@ -24,20 +26,7 @@ void AMyActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void TriggerEventWithProbability(float Probability)
-{
-	int32 RandomValue = FMath::RandRange(1, 100);
-	if (RandomValue <= Probability)
-	{
-		UE_LOG(LogTemp, Log, TEXT("Event Triggered!"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Log, TEXT("Event Not Triggered!"));
-	}
-}
-
-void PrintFVector2DArray()
+void move()
 {
 	TArray<FVector2D> VectorArray;
 
@@ -53,9 +42,22 @@ void PrintFVector2DArray()
 	}
 }
 
-float distance(FVector first, FVector second)
+int32_t step(FVector first, FVector second)
 {
 	float dx = first.X - second.X;
 	float dy = first.Y - second.Y;
 	return FMath::Sqrt(dx*dx + dy*dy);
 }
+
+//void TriggerEventWithProbability(float Probability)
+//{
+//	int32 RandomValue = FMath::RandRange(1, 100);
+//	if (RandomValue <= Probability)
+//	{
+//		UE_LOG(LogTemp, Log, TEXT("Event Triggered!"));
+//	}
+//	else
+//	{
+//		UE_LOG(LogTemp, Log, TEXT("Event Not Triggered!"));
+//	}
+//}
