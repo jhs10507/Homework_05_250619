@@ -11,20 +11,17 @@ class HOMEWORK05_API AMyActor : public AActor
 {
 	GENERATED_BODY()
 
-private:
-	FVector2D start;
-
 public:	
 	// Sets default values for this actor's properties
 	AMyActor();
+
+private:
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-	virtual void move();
-	int32_t step();
+	void Move();
+	int32 Step();
+	double Distance(FVector first, FVector second);
 };

@@ -1,5 +1,4 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include <iostream>
 #include "MyActor.h"
 #include "CoreMinimal.h"
 
@@ -7,42 +6,36 @@
 AMyActor::AMyActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 }
 
 // Called when the game starts or when spawned
 void AMyActor::BeginPlay()
 {
-	start;
 	Super::BeginPlay();
-	void move();
-	int32_t step();
+	Move();
 }
 
-// Called every frame
-void AMyActor::Tick(float DeltaTime)
+void AMyActor::Move()
 {
-	Super::Tick(DeltaTime);
-}
-
-void move()
-{
-	TArray<FVector2D> VectorArray;
-
-	for (int32 i = 0; i < 10; i++)
+	FVector Location = FVector::ZeroVector;
+	for (int i = 0; i < 10; ++i)
 	{
-		VectorArray.Add(FVector2D(i * 10.0f, i * 20.0f));
-	}
+		int32 AddX = Step();
+		int32 AddY = Step();
 
-	for (int32 i = 0; i < VectorArray.Num(); i++)
-	{
-		const FVector2D& Vec = VectorArray[i];
-		UE_LOG(LogTemp, Warning, TEXT("Vector %d: X = %f, Y = %f"), i, Vec.X, Vec.Y);
+		Location += FVector(AddX, AddY, 0);
+		UE_LOG(LogTemp, Warning, TEXT("%f %f"), Location.X, Location.Y);
 	}
 }
 
-int32_t step(FVector first, FVector second)
+int32 AMyActor::Step()
+{
+	return FMath::RandRange(0, 1);
+}
+
+double AMyActor::Distance(FVector first, FVector second)
 {
 	float dx = first.X - second.X;
 	float dy = first.Y - second.Y;
